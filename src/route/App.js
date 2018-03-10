@@ -17,8 +17,8 @@ class App extends Component {
           <Route exact path="/about-us" component={About} />
         </main>
      </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
