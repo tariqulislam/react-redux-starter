@@ -6,7 +6,7 @@ import HomeButtons from './component/HomeButtons'
 export const Home = props => {
   console.log('this is home props',props)
   return (
-    <div className={styles.ComponentAlign }>
+    <div className={ styles.ComponentAlign }>
       <h1> Home </h1>
       <p> welcome home !</p>
        <h2> { props.showHeader && props.headerText }</h2>
