@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from './asset/home.scss'
+import HomeButtons from './component/HomeButtons'
 
 export const Home = props => {
   console.log('this is home props',props)
   return (
-    <div>
+    <div className={styles.ComponentAlign }>
       <h1> Home </h1>
       <p> welcome home !</p>
        <h2> { props.showHeader && props.headerText }</h2>
-      <button onClick={() => props.showHeaderAtHome()}> Show Header By redux </button>
-      <button onClick={()=> props.clearHeaderAtHome() }>Clear Header By redux </button>
-      <button onClick={() => props.changeHomePage()}>Go to About Page</button>
+       <HomeButtons {...props} />
     </div>
   )
 }
@@ -23,4 +23,4 @@ Home.propTypes = {
   clearHeaderAtHome: PropTypes.func
 }
 
-export default Home
+export default  Home
