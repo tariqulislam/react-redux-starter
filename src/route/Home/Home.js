@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './asset/home.scss'
 import HomeButtons from './component/HomeButtons'
+import { Button } from 'react-bootstrap'
 
 export const Home = props => {
   console.log('this is home props',props)
@@ -11,6 +12,7 @@ export const Home = props => {
       <p> welcome home !</p>
        <h2> { props.showHeader && props.headerText }</h2>
        <HomeButtons {...props} />
+      <Button bsStyle="danger">Hellow world</Button>
     </div>
   )
 }

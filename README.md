@@ -2,6 +2,7 @@
 Build for newbie and student to help, how to develop administrator protal for every site. how easily developer can ``` Learn about react redux``` and Implemented it to their site. This is not good starter kit who are looking for CMS(content management system). This Starter kit is good for who want to learn react redux from scratch.
 # Table of Contents
 - [Package List Information](#Package_List_Information)
+- [Project Structure](#Project_structure)
 - [Installation and Configure](#Installation_and_Configure)
 - [Node and NPM commands and Scripts](#Node_and_NPM_commands_and_Scripts)
 - [New Module development](#New_Module_development)
