@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './asset/home.scss'
-import HomeButtons from './component/HomeButtons'
+import styles from '../asset/home.scss'
+import HomeButtons from './HomeButtons'
 import { Button } from 'react-bootstrap'
 
 export const Home = props => {
@@ -25,4 +25,5 @@ Home.propTypes = {
   clearHeaderAtHome: PropTypes.func
 }
 
-export default  Home
+
+export default Home

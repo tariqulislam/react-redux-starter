@@ -5,12 +5,13 @@ import {
     receiveShowHeader,
     requestShowHeader
 } from '../reducer/HomeReducer'
-import Home from '../Home'
+import {Home} from '../component/Home'
 
 /* action dispatcher function for reducers */
 
 const loadChangeHomePage = (dispatch) => {
-    dispatch(push('/about-us'))
+
+    dispatch(push("/"))
 }
 
 const loadshowHeaderAtHome = (dispatch) => {
@@ -37,3 +38,4 @@ export default connect(
   mapStateToProps,
   mapActionCreators
 )(Home)
+
