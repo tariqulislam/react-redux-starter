@@ -1,7 +1,7 @@
 import Loadable from 'react-loadable'
 import Loading from '../component/Loading'
 
-const delay = 1200
+const delay = 300
 
 const Home = Loadable({
     loader: () =>import('./Home'),
