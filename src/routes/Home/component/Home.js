@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import styles from '../asset/home.scss'
 import HomeButtons from './HomeButtons'
 import { Button } from 'react-bootstrap'
+import AppHelper from '../../../shared/AppHelper'
 
 export const Home = props => {
   console.log('this is home props',props)
   return (
     <div className={ styles.ComponentAlign }>
       <h1> Home </h1>
-      <p> welcome home !</p>
+      <p> { AppHelper.getRoute() }</p>
        <h2> { props.showHeader && props.headerText }</h2>
        <HomeButtons {...props} />
       <Button bsStyle="danger">Hellow world</Button>
