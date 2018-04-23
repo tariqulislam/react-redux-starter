@@ -5,8 +5,8 @@ class AppHelper {
   
   static getNavigationItems = {
     TopNav:[
-      {path: "/", label: "About Us"},
-      {path: "/Home", label: "Home"}
+      {path: "/", label: "Home", withAuth: true},
+      {path: "/about-us", label: "About Us", withAuth: true}
     ],
     LeftNav: [
 
