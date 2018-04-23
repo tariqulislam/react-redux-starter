@@ -20,7 +20,6 @@ const composedEnhancers = compose(
 const initializeStore = () => {
  
   const store = createStore(
-
     createReducer(),
     // NOTE: Don't put this in a prod build, just doing this for the demo.
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
@@ -29,8 +28,6 @@ const initializeStore = () => {
 
 
   store.asyncReducers = {};
-
-  
   store.injectReducer = (key, reducer) => {
     store.asyncReducers[key] = reducer;
     store.replaceReducer(createReducer(store.asyncReducers));

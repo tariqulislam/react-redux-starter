@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import styles from './asset/App.scss';
 import {Route, Link} from 'react-router-dom';
-import Home from './routes/Home'
-import About from './routes/About'
+import { Home, About } from './routes/routeSplit'
 
 
 class App extends Component {

@@ -12,9 +12,9 @@ const store = initializeStore();
 
 ReactDOM.render(
    <Provider store={store}>
-   <Router history={history}>
-    <App />
-    </Router>
+      <Router history={history}>
+        <App />
+      </Router>
     </Provider>
     , document.getElementById('root'));
 registerServiceWorker();
