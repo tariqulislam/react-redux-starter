@@ -87,14 +87,14 @@ Build for newbie and student to help, how to develop administrator protal for ev
        Example:
        ```
             ----| routes
-            ------| About
+            ------| Contact
             --------| asset
-            ----------| about.scss
+            ----------| contact.scss
             --------| component
-            ----------| About.js
+            ----------| Contact.js
             --------| container
-            ----------| AboutContainer.js
+            ----------| ContactContainer.js
             --------| reducer
-            ----------| AboutReducer.js
+            ----------| ContactReducer.js
             --------| index.js
         ````
