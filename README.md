@@ -2,11 +2,12 @@
 Build for newbie and student to help, how to develop administrator protal for every site. how easily developer can ``` Learn about react redux``` and Implemented it to their site. This is not good starter kit who are looking for CMS(content management system). This Starter kit is good for who want to learn react redux from scratch.
 
 # Table of Contents
-- [Project Structure](#Project_structure)
-- [Installation and Configure](#Installation_and_Configure)
+- [Project Structure](#Project Structure)
+- [Special Notes](#Special Notes)
+- [Installation and Configure](#Installation and Configure)
 - [New Module development](#New_Module_development)
 - [Redux Implementation for New Module](#Redux_Implementation_for_New_Module)
-- [Simple CRUD operation](#Simple_CRUD_operation)
+- [Handle Ajax Request](#Handle_ajax_request)
 - [Testing with jest](#Testing_with_jest)
 - [Web deployment](#Web_deployment)
    - [Apache](#Apache)
@@ -14,7 +15,7 @@ Build for newbie and student to help, how to develop administrator protal for ev
    - [Node Server](#Node_Server)
 - [Docker Implementation](#Docker_Implementation)
 
-## Project Structure
+# Project Structure
 ```
 |--| build
 |--| config
@@ -70,7 +71,7 @@ Build for newbie and student to help, how to develop administrator protal for ev
 |--| package.json
 |--| postcss.config.js
 ```
-## Special Notes
+# Special Notes
   This starter kit support, i have include the two most important production feature
 
         1. Lazy loading for Redux Store
@@ -92,21 +93,21 @@ Loadable({
    delay: 300 /** Milisecond to wait for component to load */
 })
 ```
-## Installation and Configure
+# Installation and Configure
 
    1. You can just clone the git repository [react-admin-starter-kit](https://github.com/tariqulislam/react-redux-admin-starter.git)
    2. Then run the command for:
 
-        1. For npm run 
-            npm run install
-        2. For Yarn run 
-            yarn install
+        1. For npm run
+            ```npm run install```
+        2. For Yarn run
+            ```yarn install```
 
    3. Application will run at [local server with port](http://localhost:3000)
 
 ## New Module development
 
-  This starter kit mainly developed for modularized the project and provide the developer friendly architecture. To create the new module to go to  -> ```routes``` folder.  create the folder with ```index.js``` file first.
+This starter kit mainly developed for modularized the project and provide the developer friendly architecture. To create the new module to go to  -> ```routes``` folder.  create the folder with ```index.js``` file first.
     
        Example:
         ```
@@ -138,7 +139,9 @@ export const Contact = (props) => {
 export default Contact
 ```
         
-## Redux Implementation for New Module and Add the redux store code to ContactReducer.js:
+# Redux Implementation for New Module 
+
+### Add the redux store code to ContactReducer.js:
 
 ### Create the  action constraint
 
@@ -293,6 +296,8 @@ export const Contact = (props) => {
 
 export default Contact
 ```
+
+# Handle Ajax Request
 
 
 
