@@ -70,7 +70,7 @@ Build for newbie and student to help, how to develop administrator protal for ev
 |--| package.json
 |--| postcss.config.js
 ```
-##Special Notes
+## Special Notes
   This starter kit support, i have include the two most important production feature
 
         1. Lazy loading for Redux Store
@@ -78,24 +78,25 @@ Build for newbie and student to help, how to develop administrator protal for ev
 
 For Lazy loading of Redux Store, I have create function  ```withReducer()``` which will split the reducer and loading the redux on demand at runtime of react application. we can split the code with following code below:
 
-    ```js
+   
+     export default withReducer('homeReducer'/** key for reducer to split **/, 
+            homeReducer/** reducer name for module **/)
+            (HomeContainer/** container or samrt component which create connection between redux and component)
+    
 
-            export default withReducer('homeReducer'/** key for reducer to split **/, 
-            homeReducer/** reducer name for module **/)(HomeContainer/** container or samrt component which create connection between redux and component)
-
-    ```
+           
+   
 
 For Module wise Code Spliting, I have to use ```React Loadable``` package, so we can split the code with using folowing that code below
   
-    ```js
+   
 
         Loadable({
             loader: () => import('./About' /** component name or module which will be split by webpack*/),
             loading: <LoadingComponent />, /** custom loading component which will be shows when component will be delay to load */
             delay: 300 /** Milisecond to wait for component to load */
         })
-
-    ```
+    
 
 ## Installation and Configure
 
@@ -131,7 +132,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
   
        Example:
 
-        ```js
+       
          import React from 'react'
 
         export const Contact = (props) => {
@@ -141,11 +142,11 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
         }
 
         export default Contact
-        ```
+        
     
        
 ## Add the redux store code to ContactReducer.js:
-```
+
     1. Create the  action constraint
 
         Example:
@@ -153,8 +154,8 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
         export const GET_CONTACT_INFO = 'GET_CONTACT_INFO'
         export const SET_CONTACT_INFO = 'SET_CONTACT_INFO'
         
-```
-```    
+
+  
     2.  create the initial state for redux store
 
 
@@ -162,8 +163,8 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
             contactTitle: null,
             contactDetails: null
         }
-```
-```          
+
+        
     3. create the actions for handle the payload
 
        Example: 
@@ -181,8 +182,8 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
                 payload: {data}
             }
         }
-```
-```        
+
+       
     4. Create object which has defination for handling reducer
 
      Example:
@@ -195,8 +196,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
             return ({...state, contactTitle: action.payload.data.contactTitle, contactDetails: action.payload.data.contactDetails})
         }
      }
-```
-```
+
      5. Statement for handle the contact reducer
 
      Example:
@@ -204,12 +204,12 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
      export default function contactReducer (state = initialState, action) {
         const handler = CONTACT_ACTION_HANDLER[action.type]
         return handler? handler(state, action): state
-     }
-```
+    }
+
 
 ## Add the code to smart component ```ContactContainer.js``` for connect the redux to react component:
 
-```
+
     1. import main component and other library for redux and import the reducer to smart component
 
     import {connect}  from 'react-redux'
@@ -219,8 +219,8 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
     } from '../reducer/ContactReducer'
 
     import Contact from '../component/Contact'
-```
-```
+
+
     2. create function which will dispatch the reducer 
 
     const loadRenderContactInfo = (dispatch) => {
@@ -230,25 +230,25 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
                 contactDetails: "This is new contact details"
             }))
     }
-```
 
-```
+
+
     3. create the `mapStateToProps()` default function for redux to mapping the state for reducer using in connect function
 
     const mapStateToProps = (state) => ({
         contactTitle: state.contactReducer.contactTitle,
         contactDetails: state.contactReducer.contactDetails
     })
-```
-```
+
+
     4. create the `mapActionCreators()` default function for redux to mapping the action for reducer using in connect function
 
     const mapActionCreator = (dispatch) => ({
        renderContactInfo: loadRenderContactInfo(dispatch)
     })
-```
 
-```
+
+
     5. connect the redux with react component
 
     export default connect(
@@ -256,13 +256,13 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
         mapActionCreator
     )(Contact)
 
-```
 
-``` 
+
+
 
 ## Apply the lazy loading to (Contact -> index.js) file for Redux store for contact module
 
-```
+
     import ContactContainer from './container/ContactContainer'
     import contactReducer from './reducer/ContactReducer'
     import {withReducer} from '../../core/withReducer'
@@ -272,7 +272,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
 
 ## Add the code spliting functionality at runtime by appling ```react loadable``` to ```routeSplit.js``` file
 
-```
+
   
     const Contact = Loadable({
         loader: () => import('./Contact'),
@@ -283,23 +283,23 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
 
     export { Home, About, Contact }
 
-```
+
 
 ## To show the ```Contact``` component in menu we should add the mapping to (shared -> AppHelper.js -> getNavigationItem -> TopNav)
 
-```
+
    {id: "3", path: "/contact", label: "Contacts", withAuth: true}
-```
+
 
 ## Add the ```Contact``` to react router for route, we can add below code to (router -> WithAuthRoute.js)
 
-```
+
   <Route exact path="/contact" component={Contact} />
-```
+
 
 ## Change the contact page with this code 
 
-```
+
 import React from 'react'
 
 export const Contact = (props) => {
@@ -312,7 +312,7 @@ export const Contact = (props) => {
 }
 
 export default Contact
-```
+
 
 
 
