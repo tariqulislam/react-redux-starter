@@ -240,72 +240,59 @@ const mapActionCreator = (dispatch) => ({
  renderContactInfo: loadRenderContactInfo(dispatch)
 })
 ```
+#### connect the redux with react component
 
+```javascript
+export default connect(
+  mapStateToProps,
+  mapActionCreator
+)(Contact)
+```
+#### Apply the lazy loading to (Contact -> index.js) file for Redux store for contact module
 
+```javascript
+import ContactContainer from './container/ContactContainer'
+import contactReducer from './reducer/ContactReducer'
+import {withReducer} from '../../core/withReducer'
+export default withReducer('contactReducer', contactReducer)(ContactContainer)
+```
+#### Add the code spliting functionality at runtime by appling ```react loadable``` to ```routeSplit.js``` file
 
-    5. connect the redux with react component
-
-    export default connect(
-        mapStateToProps,
-        mapActionCreator
-    )(Contact)
-
-
-
-
-
-## Apply the lazy loading to (Contact -> index.js) file for Redux store for contact module
-
-
-    import ContactContainer from './container/ContactContainer'
-    import contactReducer from './reducer/ContactReducer'
-    import {withReducer} from '../../core/withReducer'
-    export default withReducer('contactReducer', contactReducer)(ContactContainer)
-
+```javascript
+const Contact = Loadable({
+  loader: () => import('./Contact'),
+  loading: Loading,
+  delay: delay
+})
+export { Home, About, Contact }
 ```
 
-## Add the code spliting functionality at runtime by appling ```react loadable``` to ```routeSplit.js``` file
+
+#### To show the ```Contact``` component in menu we should add the mapping to (shared -> AppHelper.js -> getNavigationItem -> TopNav)
+
+```{id: "3", path: "/contact", label: "Contacts", withAuth: true}```
 
 
-  
-    const Contact = Loadable({
-        loader: () => import('./Contact'),
-        loading: Loading,
-        delay: delay
-    })
+#### Add the ```Contact``` to react router for route, we can add below code to (router -> WithAuthRoute.js)
+
+```<Route exact path="/contact" component={Contact} />```
 
 
-    export { Home, About, Contact }
-
-
-
-## To show the ```Contact``` component in menu we should add the mapping to (shared -> AppHelper.js -> getNavigationItem -> TopNav)
-
-
-   {id: "3", path: "/contact", label: "Contacts", withAuth: true}
-
-
-## Add the ```Contact``` to react router for route, we can add below code to (router -> WithAuthRoute.js)
-
-
-  <Route exact path="/contact" component={Contact} />
-
-
-## Change the contact page with this code 
-
-
+#### Change the contact page with this code 
+```javascript
 import React from 'react'
 
 export const Contact = (props) => {
-    return (
-     <div>
-        <h1>{props.contactTitle}</h1>
-        <p>{props.contactDetails}</p>
-     </div>
-    )
+ return (
+  <div>
+     <h1>{props.contactTitle}</h1>
+     <p>{props.contactDetails}</p>
+  </div>
+ )
 }
 
 export default Contact
+```
 
 
 
