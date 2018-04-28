@@ -78,7 +78,7 @@ Build for newbie and student to help, how to develop administrator protal for ev
 
 For Lazy loading of Redux Store, I have create function  ```withReducer()``` which will split the reducer and loading the redux on demand at runtime of react application. we can split the code with following code below:
 
-    ```javascript
+    ```js
 
             export default withReducer('homeReducer'/** key for reducer to split **/, 
             homeReducer/** reducer name for module **/)(HomeContainer/** container or samrt component which create connection between redux and component)
@@ -87,7 +87,7 @@ For Lazy loading of Redux Store, I have create function  ```withReducer()``` whi
 
 For Module wise Code Spliting, I have to use ```React Loadable``` package, so we can split the code with using folowing that code below
   
-    ```javascript
+    ```js
 
         Loadable({
             loader: () => import('./About' /** component name or module which will be split by webpack*/),
@@ -131,7 +131,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
   
        Example:
 
-        ```javascript
+        ```js
          import React from 'react'
 
         export const Contact = (props) => {
@@ -150,13 +150,13 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
 
         Example:
 
-        ```javascript
+        ```js
         export const GET_CONTACT_INFO = 'GET_CONTACT_INFO'
         export const SET_CONTACT_INFO = 'SET_CONTACT_INFO'
         ```
     2.  create the initial state for redux store
 
-        ```javascript
+        ```js
         const initilizeState = {
             contactTitle: null,
             contactDetails: null
@@ -166,7 +166,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
 
        Example: 
 
-       ```javascript
+       ```js
          export function getContactInfo () {
             return { 
                 type: GET_CONTACT_INFO,
@@ -187,7 +187,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
 
      Example:
 
-     ```javascript
+     ```js
      const CONTACT_ACTION_HANDLER = {
         [GET_CONTACT_INFO]: (state, action) => {
             return ({...state, contactTitle: null, contactDetails: null})
@@ -202,7 +202,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
 
      Example:
 
-     ```javascript
+     ```js
      export default function contactReducer (state = initialState, action) {
         const handler = CONTACT_ACTION_HANDLER[action.type]
         return handler? handler(state, action): state
