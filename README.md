@@ -127,12 +127,12 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
             |----------| ContactReducer.js
             |--------| index.js
         ```
-#Design the Component with React.js component design:
+##Design the Component with React.js component design:
   
        Example:
 
         ```javascript
-        import React from 'react'
+         import React from 'react'
 
         export const Contact = (props) => {
             return (
@@ -144,7 +144,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
         ```
     
        
-#Add the redux store code to ```ContactReducer.js```:
+##Add the redux store code to ContactReducer.js:
 
     1. Create the  action constraint
 
