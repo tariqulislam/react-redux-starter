@@ -2,10 +2,10 @@
 Build for newbie and student to help, how to develop administrator protal for every site. how easily developer can ``` Learn about react redux``` and Implemented it to their site. This is not good starter kit who are looking for CMS(content management system). This Starter kit is good for who want to learn react redux from scratch.
 
 # Table of Contents
-- [Project Structure](#Project Structure)
-- [Special Notes](#Special Notes)
-- [Installation and Configure](#Installation and Configure)
-- [New Module development](#New_Module_development)
+- [Project Structure](#Project-Structure)
+- [Special Notes](#Special-Notes)
+- [Installation and Configure](#Installation-and-Configure)
+- [New Module Development](#New-Module-Development)
 - [Redux Implementation for New Module](#Redux_Implementation_for_New_Module)
 - [Handle Ajax Request](#Handle_ajax_request)
 - [Testing with jest](#Testing_with_jest)
@@ -105,7 +105,7 @@ Loadable({
 
    3. Application will run at [local server with port](http://localhost:3000)
 
-## New Module development
+## New Module Development
 
 This starter kit mainly developed for modularized the project and provide the developer friendly architecture. To create the new module to go to  -> ```routes``` folder.  create the folder with ```index.js``` file first.
     
