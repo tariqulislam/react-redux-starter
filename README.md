@@ -37,11 +37,13 @@ Build for newbie and student to help, how to develop administrator protal for ev
 |----| container
 |------| [Global Smart Component Folder]
 |------| [Global Smart File(.js)]
+|----| layout [Main Layouts of the projects]
 |----| core
-|------| initializeStore.js
-|------| rootReducer.js
-|------| withReducer.js
+|------| initializeStore.js (Initilize the main store for redux)
+|------| rootReducer.js (Main reducer class for root)
+|------| withReducer.js (For Lazy loading the redux store)
 |----| reducers
+|----| router [Configure the router]
 |------| [Global Reducer Folder for Redux]
 |------| [Global Reducer File(.js)]
 |----| routes
@@ -69,3 +71,10 @@ Build for newbie and student to help, how to develop administrator protal for ev
 |--| package.json
 |--| postcss.config.js
 ```
+
+#Installation and Configure
+   1. You can just ```clone``` the git repository ```https://github.com/tariqulislam/react-redux-admin-starter.git```
+   2. Then run the command for:
+        For npm run ```npm run install```
+        For Yarn run ```yarn install```
+   3. Application will run at http://localhost:3000 
