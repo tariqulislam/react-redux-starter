@@ -207,6 +207,60 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
      }
 ```
 
+## Add the smart component or container for connect the redux to react component:
+
+```
+    1. import main component and other library for redux and import the reducer to smart component
+
+    import {connect}  from 'react-redux'
+    import {
+        getContactInfo,
+        setContactInfo
+    } from '../reducer/ContactReducer'
+
+    import Contact from '../component/Contact'
+```
+```
+    2. create function which will dispatch the reducer 
+
+    const loadRenderContactInfo = (dispatch) => {
+        dispatch(getContactInfo())
+        dispatch(setContactInfo({
+                contactTitle: "This is new contact title",
+                contactDetails: "This is new contact details"
+            }))
+    }
+```
+
+```
+    3. create the `mapStateToProps()` default function for redux to mapping the state for reducer using in connect function
+
+    const mapStateToProps = (state) => ({
+        contactTitle: state.contactReducer.contactTitle,
+        contactDetails: state.contactReducer.contactDetails
+    })
+```
+```
+    4. create the `mapActionCreators()` default function for redux to mapping the action for reducer using in connect function
+
+    const mapActionCreator = (dispatch) => ({
+       renderContactInfo: loadRenderContactInfo(dispatch)
+    })
+```
+
+```
+    5. connect the redux with react component
+
+    export default connect(
+        mapStateToProps,
+        mapActionCreator
+    )(Contact)
+
+```
+
+
+
+
 
 
      
