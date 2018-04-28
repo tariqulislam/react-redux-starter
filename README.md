@@ -92,17 +92,15 @@ Loadable({
    delay: 300 /** Milisecond to wait for component to load */
 })
 ```
-    
-
 ## Installation and Configure
 
    1. You can just clone the git repository [react-admin-starter-kit](https://github.com/tariqulislam/react-redux-admin-starter.git)
    2. Then run the command for:
 
         1. For npm run 
-            ```npm run install```
+            npm run install
         2. For Yarn run 
-            ```yarn install```
+            yarn install
 
    3. Application will run at [local server with port](http://localhost:3000)
 
@@ -125,123 +123,123 @@ Loadable({
             |--------| index.js
         ```
 ## Design the Component with React.js component design:
-  
-       Example:
 
-       
-         import React from 'react'
+### Example:
 
-        export const Contact = (props) => {
-            return (
-              <div> This is contact page </div>
-            )
-        }
+```javascript
+import React from 'react'
 
-        export default Contact
+export const Contact = (props) => {
+   return (
+     <div> This is contact page </div>
+   )
+}
+
+export default Contact
+```
         
-    
-       
-## Add the redux store code to ContactReducer.js:
+## Redux Implementation for New Module and Add the redux store code to ContactReducer.js:
 
-    1. Create the  action constraint
+### Create the  action constraint
 
-        Example:
+#### Example:
 
-        export const GET_CONTACT_INFO = 'GET_CONTACT_INFO'
-        export const SET_CONTACT_INFO = 'SET_CONTACT_INFO'
-        
+```javascript
+export const GET_CONTACT_INFO = 'GET_CONTACT_INFO'
+export const SET_CONTACT_INFO = 'SET_CONTACT_INFO'
+```        
+### create the initial state for redux store
 
-  
-    2.  create the initial state for redux store
+```javascript
+const initialState = {
+   contactTitle: null,
+   contactDetails: null
+}
+```
+### create the actions for handle the payload
 
+#### Example: 
 
-        const initialState = {
-            contactTitle: null,
-            contactDetails: null
-        }
+```javascript
+export function getContactInfo () {
+   return { 
+       type: GET_CONTACT_INFO,
+       payload: {}
+   }
+}
+```
+```javascript
+export function setContactInfo (data) {
+   return {
+       type: SET_CONTACT_INFO,
+       payload: {data}
+   }
+}
+```
+### Create object which has defination for handling reducer
 
-        
-    3. create the actions for handle the payload
+#### Example:
 
-       Example: 
+```javascript
+const CONTACT_ACTION_HANDLER = {
+  [GET_CONTACT_INFO]: (state, action) => {
+      return ({...state, contactTitle: null, contactDetails: null})
+  },
+  [SET_CONTACT_INFO]: (state, action) => {
+      return ({...state, contactTitle: action.payload.data.contactTitle, contactDetails: action.payload.data.contactDetails})
+  }
+}
+```
+### Statement for handle the contact reducer
 
-         export function getContactInfo () {
-            return { 
-                type: GET_CONTACT_INFO,
-                payload: {}
-            }
-         }
+#### Example:
 
-        export function setContactInfo (data) {
-            return {
-                type: SET_CONTACT_INFO,
-                payload: {data}
-            }
-        }
+```javascript
+export default function contactReducer (state = initialState, action) {
+  const handler = CONTACT_ACTION_HANDLER[action.type]
+  return handler? handler(state, action): state
+}
+```
 
-       
-    4. Create object which has defination for handling reducer
+### Add the code to smart component ContactContainer.js for connect the redux to react component:
 
-     Example:
+#### import main component and other library for redux and import the reducer to smart component
 
-     const CONTACT_ACTION_HANDLER = {
-        [GET_CONTACT_INFO]: (state, action) => {
-            return ({...state, contactTitle: null, contactDetails: null})
-        },
-        [SET_CONTACT_INFO]: (state, action) => {
-            return ({...state, contactTitle: action.payload.data.contactTitle, contactDetails: action.payload.data.contactDetails})
-        }
-     }
+```javascript
+import {connect}  from 'react-redux'
+import {
+  getContactInfo,
+  setContactInfo
+} from '../reducer/ContactReducer'
 
-     5. Statement for handle the contact reducer
+import Contact from '../component/Contact'
+```
+#### create function which will dispatch the reducer 
 
-     Example:
+```javascript
+const loadRenderContactInfo = (dispatch) => {
+  dispatch(getContactInfo())
+  dispatch(setContactInfo({
+          contactTitle: "This is new contact title",
+          contactDetails: "This is new contact details"
+      }))
+}
+```
+#### create the `mapStateToProps()` default function for redux to mapping the state for reducer using in connect function
 
-     export default function contactReducer (state = initialState, action) {
-        const handler = CONTACT_ACTION_HANDLER[action.type]
-        return handler? handler(state, action): state
-    }
+```javascript
+const mapStateToProps = (state) => ({
+  contactTitle: state.contactReducer.contactTitle,
+  contactDetails: state.contactReducer.contactDetails
+})
+````
+#### create the `mapActionCreators()` default function for redux to mapping the action for reducer using in connect function
 
-
-## Add the code to smart component ```ContactContainer.js``` for connect the redux to react component:
-
-
-    1. import main component and other library for redux and import the reducer to smart component
-
-    import {connect}  from 'react-redux'
-    import {
-        getContactInfo,
-        setContactInfo
-    } from '../reducer/ContactReducer'
-
-    import Contact from '../component/Contact'
-
-
-    2. create function which will dispatch the reducer 
-
-    const loadRenderContactInfo = (dispatch) => {
-        dispatch(getContactInfo())
-        dispatch(setContactInfo({
-                contactTitle: "This is new contact title",
-                contactDetails: "This is new contact details"
-            }))
-    }
-
-
-
-    3. create the `mapStateToProps()` default function for redux to mapping the state for reducer using in connect function
-
-    const mapStateToProps = (state) => ({
-        contactTitle: state.contactReducer.contactTitle,
-        contactDetails: state.contactReducer.contactDetails
-    })
-
-
-    4. create the `mapActionCreators()` default function for redux to mapping the action for reducer using in connect function
-
-    const mapActionCreator = (dispatch) => ({
-       renderContactInfo: loadRenderContactInfo(dispatch)
-    })
+```javascript
+const mapActionCreator = (dispatch) => ({
+ renderContactInfo: loadRenderContactInfo(dispatch)
+})
+```
 
 
 
