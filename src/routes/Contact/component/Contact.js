@@ -2,7 +2,10 @@ import React from 'react'
 
 export const Contact = (props) => {
     return (
-     <div> This is contact page </div>
+     <div>
+        <h1>{props.contactTitle}</h1>
+        <p>{props.contactDetails}</p>
+     </div>
     )
 }
 

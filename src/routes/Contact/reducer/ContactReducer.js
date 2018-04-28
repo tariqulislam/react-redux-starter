@@ -24,7 +24,7 @@ const CONTACT_ACTION_HANDLER = {
     }
 }
 
-const initilizeState = {
+const initialState = {
     contactTitle: null,
     contactDetails: null
 }

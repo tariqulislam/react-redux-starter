@@ -158,7 +158,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
     2.  create the initial state for redux store
 
 
-        const initilizeState = {
+        const initialState = {
             contactTitle: null,
             contactDetails: null
         }
@@ -207,7 +207,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
      }
 ```
 
-## Add the smart component or container for connect the redux to react component:
+## Add the code to smart component ```ContactContainer.js``` for connect the redux to react component:
 
 ```
     1. import main component and other library for redux and import the reducer to smart component
@@ -256,6 +256,62 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
         mapActionCreator
     )(Contact)
 
+```
+
+``` 
+
+## Apply the lazy loading to (Contact -> index.js) file for Redux store for contact module
+
+```
+    import ContactContainer from './container/ContactContainer'
+    import contactReducer from './reducer/ContactReducer'
+    import {withReducer} from '../../core/withReducer'
+    export default withReducer('contactReducer', contactReducer)(ContactContainer)
+
+```
+
+## Add the code spliting functionality at runtime by appling ```react loadable``` to ```routeSplit.js``` file
+
+```
+  
+    const Contact = Loadable({
+        loader: () => import('./Contact'),
+        loading: Loading,
+        delay: delay
+    })
+
+
+    export { Home, About, Contact }
+
+```
+
+## To show the ```Contact``` component in menu we should add the mapping to (shared -> AppHelper.js -> getNavigationItem -> TopNav)
+
+```
+   {id: "3", path: "/contact", label: "Contacts", withAuth: true}
+```
+
+## Add the ```Contact``` to react router for route, we can add below code to (router -> WithAuthRoute.js)
+
+```
+  <Route exact path="/contact" component={Contact} />
+```
+
+## Change the contact page with this code 
+
+```
+import React from 'react'
+
+export const Contact = (props) => {
+    return (
+     <div>
+        <h1>{props.contactTitle}</h1>
+        <p>{props.contactDetails}</p>
+     </div>
+    )
+}
+
+export default Contact
 ```
 
 

@@ -15,4 +15,10 @@ const About = Loadable({
     delay: delay
 })
 
-export { Home, About }
+const Contact = Loadable({
+    loader: () => import('./Contact'),
+    loading: Loading,
+    delay: delay
+})
+
+export { Home, About, Contact }
