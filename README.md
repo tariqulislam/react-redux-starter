@@ -82,19 +82,33 @@ Build for newbie and student to help, how to develop administrator protal for ev
 
   ## New Module development
 
-  This starter kit mainly developed for modularized the project and provide the developer friendly architecture. To create the new module to go to  -> `routes` folder.  create the folder with ```index.js``` file first.
-
+  This starter kit mainly developed for modularized the project and provide the developer friendly architecture. To create the new module to go to  -> ```routes``` folder.  create the folder with ```index.js``` file first.
+    
        Example:
+        ``` 
+            |----| routes
+            |------| Contact
+            |--------| asset
+            |----------| contact.scss
+            |--------| component
+            |----------| Contact.js
+            |--------| container
+            |----------| ContactContainer.js
+            |--------| reducer
+            |----------| ContactReducer.js
+            |--------| index.js
+        ```
+Design the Component with ```React.js``` component design:
+  
+       Example:
+         ```
+        import React from 'react'
+
+        export const Contact = (props) => {
+            return (
+              <div> This is contact page </div>
+            )
+        }
+
+       export default Contact
        ```
-            ----| routes
-            ------| Contact
-            --------| asset
-            ----------| contact.scss
-            --------| component
-            ----------| Contact.js
-            --------| container
-            ----------| ContactContainer.js
-            --------| reducer
-            ----------| ContactReducer.js
-            --------| index.js
-        ````
