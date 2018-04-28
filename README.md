@@ -70,22 +70,51 @@ Build for newbie and student to help, how to develop administrator protal for ev
 |--| package.json
 |--| postcss.config.js
 ```
+##Special Notes
+  This starter kit support, i have include the two most important production feature
+
+        1. Lazy loading for Redux Store
+        2. Module wise Code Spliting
+
+For Lazy loading of Redux Store, I have create function  ```withReducer()``` which will split the reducer and loading the redux on demand at runtime of react application. we can split the code with following code below:
+
+    ```javascript
+
+            export default withReducer('homeReducer'/** key for reducer to split **/, 
+            homeReducer/** reducer name for module **/)(HomeContainer/** container or samrt component which create connection between redux and component)
+
+    ```
+
+For Module wise Code Spliting, I have to use ```React Loadable``` package, so we can split the code with using folowing that code below
+  
+    ```javascript
+
+        Loadable({
+            loader: () => import('./About' /** component name or module which will be split by webpack*/),
+            loading: <LoadingComponent />, /** custom loading component which will be shows when component will be delay to load */
+            delay: 300 /** Milisecond to wait for component to load */
+        })
+
+    ```
 
 ## Installation and Configure
 
-   1. You can just ```clone``` the git repository ```https://github.com/tariqulislam/react-redux-admin-starter.git```
+   1. You can just clone the git repository [react-admin-starter-kit](https://github.com/tariqulislam/react-redux-admin-starter.git)
    2. Then run the command for:
 
-        For npm run ```npm run install```
-        For Yarn run ```yarn install```
-   3. Application will run at http://localhost:3000
+        1. For npm run 
+            ```npm run install```
+        2. For Yarn run 
+            ```yarn install```
 
-  ## New Module development
+   3. Application will run at [local server with port](http://localhost:3000)
+
+## New Module development
 
   This starter kit mainly developed for modularized the project and provide the developer friendly architecture. To create the new module to go to  -> ```routes``` folder.  create the folder with ```index.js``` file first.
     
        Example:
-        ``` 
+        ```
             |----| routes
             |------| Contact
             |--------| asset
@@ -98,11 +127,11 @@ Build for newbie and student to help, how to develop administrator protal for ev
             |----------| ContactReducer.js
             |--------| index.js
         ```
-Design the Component with ```React.js``` component design:
+#Design the Component with React.js component design:
   
        Example:
-       
-         ```javascript
+
+        ```javascript
         import React from 'react'
 
         export const Contact = (props) => {
@@ -111,5 +140,77 @@ Design the Component with ```React.js``` component design:
             )
         }
 
-       export default Contact
+        export default Contact
+        ```
+    
+       
+#Add the redux store code to ```ContactReducer.js```:
+
+    1. Create the  action constraint
+
+        Example:
+
+        ```javascript
+        export const GET_CONTACT_INFO = 'GET_CONTACT_INFO'
+        export const SET_CONTACT_INFO = 'SET_CONTACT_INFO'
+        ```
+    2.  create the initial state for redux store
+
+        ```javascript
+        const initilizeState = {
+            contactTitle: null,
+            contactDetails: null
+        }
+        ```    
+    3. create the actions for handle the payload
+
+       Example: 
+
+       ```javascript
+         export function getContactInfo () {
+            return { 
+                type: GET_CONTACT_INFO,
+                payload: {}
+            }
+         }
+
+        export function setContactInfo (data) {
+            return {
+                type: SET_CONTACT_INFO,
+                payload: {data}
+            }
+        }
        ```
+
+        
+    4. Create object which has defination for handling reducer
+
+     Example:
+
+     ```javascript
+     const CONTACT_ACTION_HANDLER = {
+        [GET_CONTACT_INFO]: (state, action) => {
+            return ({...state, contactTitle: null, contactDetails: null})
+        },
+        [SET_CONTACT_INFO]: (state, action) => {
+            return ({...state, contactTitle: action.payload.data.contactTitle, contactDetails: action.payload.data.contactDetails})
+        }
+     }
+     ```
+
+     5. Statement for handle the contact reducer
+
+     Example:
+
+     ```javascript
+     export default function contactReducer (state = initialState, action) {
+        const handler = CONTACT_ACTION_HANDLER[action.type]
+        return handler? handler(state, action): state
+     }
+     ```
+
+
+
+     
+
+
