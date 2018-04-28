@@ -76,26 +76,22 @@ Build for newbie and student to help, how to develop administrator protal for ev
         1. Lazy loading for Redux Store
         2. Module wise Code Spliting
 
-For Lazy loading of Redux Store, I have create function  ```withReducer()``` which will split the reducer and loading the redux on demand at runtime of react application. we can split the code with following code below:
+For Lazy loading of Redux Store, I have create function  withReducer() which will split the reducer and loading the redux on demand at runtime of react application. we can split the code with following code below:
 
-   
-     export default withReducer('homeReducer'/** key for reducer to split **/, 
-            homeReducer/** reducer name for module **/)
-            (HomeContainer/** container or samrt component which create connection between redux and component)
-    
-
-           
-   
-
+  ```javascript 
+  export default withReducer('homeReducer'/** key for reducer to split **/, 
+  homeReducer/** reducer name for module **/)
+  (HomeContainer/** container or samrt component which create connection between redux and component)
+  ```
 For Module wise Code Spliting, I have to use ```React Loadable``` package, so we can split the code with using folowing that code below
   
-   
-
-        Loadable({
-            loader: () => import('./About' /** component name or module which will be split by webpack*/),
-            loading: <LoadingComponent />, /** custom loading component which will be shows when component will be delay to load */
-            delay: 300 /** Milisecond to wait for component to load */
-        })
+```javascript
+Loadable({
+   loader: () => import('./About' /** component name or module which will be split by webpack*/),
+   loading: <LoadingComponent />, /** custom loading component which will be shows when component will be delay to load */
+   delay: 300 /** Milisecond to wait for component to load */
+})
+```
     
 
 ## Installation and Configure
