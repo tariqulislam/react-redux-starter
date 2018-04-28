@@ -1,2 +1,2 @@
-import About from './About'
+import About from './component/About'
 export default  About

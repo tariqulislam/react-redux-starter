@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './asset/about.scss'
+import styles from '../asset/about.scss'
 
 export const About = () => (
   <div className={styles.ComponentAlign}>
