@@ -4,7 +4,6 @@ Build for newbie and student to help, how to develop administrator protal for ev
 # Table of Contents
 - [Project Structure](#Project_structure)
 - [Installation and Configure](#Installation_and_Configure)
-- [Node and NPM commands and Scripts](#Node_and_NPM_commands_and_Scripts)
 - [New Module development](#New_Module_development)
 - [Redux Implementation for New Module](#Redux_Implementation_for_New_Module)
 - [Simple CRUD operation](#Simple_CRUD_operation)
@@ -72,9 +71,30 @@ Build for newbie and student to help, how to develop administrator protal for ev
 |--| postcss.config.js
 ```
 
-#Installation and Configure
+## Installation and Configure
+
    1. You can just ```clone``` the git repository ```https://github.com/tariqulislam/react-redux-admin-starter.git```
    2. Then run the command for:
+
         For npm run ```npm run install```
         For Yarn run ```yarn install```
-   3. Application will run at http://localhost:3000 
+   3. Application will run at http://localhost:3000
+
+  ## New Module development
+
+  This starter kit mainly developed for modularized the project and provide the developer friendly architecture. To create the new module to go to  -> `routes` folder.  create the folder with ```index.js``` file first.
+
+       Example:
+       ```
+            ----| routes
+            ------| About
+            --------| asset
+            ----------| about.scss
+            --------| component
+            ----------| About.js
+            --------| container
+            ----------| AboutContainer.js
+            --------| reducer
+            ----------| AboutReducer.js
+            --------| index.js
+        ````
