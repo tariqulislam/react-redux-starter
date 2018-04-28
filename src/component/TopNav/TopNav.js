@@ -8,7 +8,7 @@ export const TopNav = () => {
         <div className={styles.Appheader}>
          {
              AppHelper.getNavigationItems.TopNav.map((item) => {
-                 return (<Link className={styles.AppLink} to={item.path}>{item.label}</Link>)
+                 return (<Link key={item.id} className={styles.AppLink} to={item.path}>{item.label}</Link>)
              })
          }
         </div>
