@@ -127,7 +127,7 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
             |----------| ContactReducer.js
             |--------| index.js
         ```
-##Design the Component with React.js component design:
+## Design the Component with React.js component design:
   
        Example:
 
@@ -144,29 +144,30 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
         ```
     
        
-##Add the redux store code to ContactReducer.js:
-
+## Add the redux store code to ContactReducer.js:
+```
     1. Create the  action constraint
 
         Example:
 
-        ```js
         export const GET_CONTACT_INFO = 'GET_CONTACT_INFO'
         export const SET_CONTACT_INFO = 'SET_CONTACT_INFO'
-        ```
+        
+```
+```    
     2.  create the initial state for redux store
 
-        ```js
+
         const initilizeState = {
             contactTitle: null,
             contactDetails: null
         }
-        ```    
+```
+```          
     3. create the actions for handle the payload
 
        Example: 
 
-       ```js
          export function getContactInfo () {
             return { 
                 type: GET_CONTACT_INFO,
@@ -180,14 +181,12 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
                 payload: {data}
             }
         }
-       ```
-
-        
+```
+```        
     4. Create object which has defination for handling reducer
 
      Example:
 
-     ```js
      const CONTACT_ACTION_HANDLER = {
         [GET_CONTACT_INFO]: (state, action) => {
             return ({...state, contactTitle: null, contactDetails: null})
@@ -196,18 +195,17 @@ For Module wise Code Spliting, I have to use ```React Loadable``` package, so we
             return ({...state, contactTitle: action.payload.data.contactTitle, contactDetails: action.payload.data.contactDetails})
         }
      }
-     ```
-
+```
+```
      5. Statement for handle the contact reducer
 
      Example:
 
-     ```js
      export default function contactReducer (state = initialState, action) {
         const handler = CONTACT_ACTION_HANDLER[action.type]
         return handler? handler(state, action): state
      }
-     ```
+```
 
 
 
