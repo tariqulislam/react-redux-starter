@@ -101,7 +101,8 @@ Build for newbie and student to help, how to develop administrator protal for ev
 Design the Component with ```React.js``` component design:
   
        Example:
-         ```
+       
+         ```javascript
         import React from 'react'
 
         export const Contact = (props) => {
