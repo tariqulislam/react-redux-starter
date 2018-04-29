@@ -32,7 +32,6 @@
     "glob-parent": "^3.1.0",
     "history": "^4.7.2",
     "html-webpack-plugin": "2.29.0",
-    "jest": "20.0.4",
     "jquery": "^3.3.1",
     "lodash": "^4.17.10",
     "object-assign": "4.1.1",
@@ -67,6 +66,9 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^20.0.4",
     "node-sass": "^4.7.2",
     "redux-devtools-extension": "^2.13.2",
     "sass-loader": "^6.0.7"
