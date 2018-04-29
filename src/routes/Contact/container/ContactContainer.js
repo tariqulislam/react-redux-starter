@@ -1,7 +1,9 @@
 import {connect}  from 'react-redux'
 import {
  getContactInfo,
- setContactInfo
+ setContactInfo,
+ setPostInfo,
+ getPostInfoFromApi
 } from '../reducer/ContactReducer'
 
 import Contact from '../component/Contact'
@@ -14,13 +16,22 @@ const loadRenderContactInfo = (dispatch) => {
         }))
 }
 
+const loadGetPostsInfo = (data,dispatch) => {
+    dispatch(getPostInfoFromApi(data))
+    .then(resonse => {
+        dispatch(setPostInfo(resonse.payload.data))
+    })   
+}
+
 const mapStateToProps = (state) => ({
    contactTitle: state.contactReducer.contactTitle,
-   contactDetails: state.contactReducer.contactDetails
+   contactDetails: state.contactReducer.contactDetails,
+   posts: state.contactReducer.posts
 })
 
 const mapActionCreator = (dispatch) => ({
-   renderContactInfo: loadRenderContactInfo(dispatch)
+   renderContactInfo: () => loadRenderContactInfo(dispatch),
+   getPostsInfo: (data) => loadGetPostsInfo(data,dispatch)
 })
 
 export default connect(

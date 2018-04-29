@@ -299,6 +299,116 @@ export default Contact
 
 # Handle Ajax Request
 
+Handling Ajax is a important part of the for any api based application. we can use the ```axios``` package to handle
+the Ajax request with this starter kit. I have discuss the procedure below
+
+## Add the redux code for ```ContactReducer.js``` file:
+
+#### Import the axios package in sample:
+```javascript
+import axios from 'axios'
+import RequestHeaderHelper from '../../../shared/RequestHeaderHelper'
+```
+#### Add the Action constraint for handling the ajax request
+```javascript
+export const GET_POST_INFO = 'GET_POST_INFO'
+export const SET_POST_INFO = 'SET_POST_INFO'
+```
+#### Add the Actions for handling the ajax request
+```javascript
+export function getPostInfo () {
+    return {
+        type: GET_POST_INFO,
+        payload: {}
+    }
+}
+```
+```javascript
+export function setPostInfo (data) {
+    return {
+        type: SET_POST_INFO,
+        payload: {data}
+    }
+}
+```
+#### Create the function which will get the data from api by using ```axios```
+```javascript
+export const getPostInfoFromApi = (data) => {
+    const url = `https://jsonplaceholder.typicode.com/comments?postId=${data.id}`
+    const request = axios.get(url, RequestHeaderHelper.jsonHeaderWithAuth())
+    return {type: 'GET_POST_INFO', payload: request}
+}
+```
+#### Add the reducer to control Redux store change
+```javascript
+[GET_POST_INFO]: (state, action) => {
+        return ({...state, posts: null })
+},
+[SET_POST_INFO]: (state, action) => {
+        return ({...state, posts: action.payload.data })
+}
+```
+#### Add the function to ```dispatch getPostInfoFromApi() function``` to smart component ```ContactContainer.js```
+```javascript
+const loadGetPostsInfo = (data,dispatch) => {
+    dispatch(getPostInfoFromApi(data))
+    .then(resonse => {
+        dispatch(setPostInfo(resonse.payload.data))
+    })   
+}
+```
+#### Add change state to ```mapStateToProps()``` function for ```posts``` data
+```javascript
+ const mapStateToProps = (state) => ({
+   contactTitle: state.contactReducer.contactTitle,
+   contactDetails: state.contactReducer.contactDetails,
+   `posts: state.contactReducer.posts`
+})
+```
+#### Add the function accessible to react component, we should add function to ```mapActionCreator()``` function
+```javascript
+const mapActionCreator = (dispatch) => ({
+   renderContactInfo: loadRenderContactInfo(dispatch),
+   `getPostsInfo: (data) => loadGetPostsInfo(data,dispatch)`
+})
+```
+#### Change the component with react component for get the ```componentDidMount``` and ```componentWillMount```
+```javascript
+import React from 'react'
+import map from 'lodash/map'
+
+class Contact extends React.Component {
+    
+    componentDidMount() {
+       const {renderContactInfo, getPostsInfo} = this.props
+       renderContactInfo()
+       getPostsInfo({id: 1})
+    }
+
+    render() {
+        const {posts, contactTitle, contactDetails} = this.props
+        console.log(this.props)
+        return (
+            <div>
+                <h1>{contactTitle}</h1>
+                <p>{contactDetails}</p>
+                <ul>
+                {
+                    map(posts, post =>
+                      <li>{post.name}</li>
+                    )
+                }
+                </ul>
+            </div>
+        )
+    }
+}
+
+export default Contact
+```
+
+
+
 
 
 
