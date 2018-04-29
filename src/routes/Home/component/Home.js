@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from '../asset/home.scss'
 import HomeButtons from './HomeButtons'
 import { Button } from 'react-bootstrap'
-import AppHelper from '../../../shared/AppHelper'
+import AppHelper from 'shared/AppHelper'
 
 export const Home = props => {
   console.log('this is home props',props)

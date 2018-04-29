@@ -1,5 +1,5 @@
 import axios from 'axios'
-import RequestHeaderHelper from '../../../shared/RequestHeaderHelper'
+import RequestHeaderHelper from 'shared/RequestHeaderHelper'
 export const GET_CONTACT_INFO = 'GET_CONTACT_INFO'
 export const SET_CONTACT_INFO = 'SET_CONTACT_INFO'
 
