@@ -1,4 +1,4 @@
-# REACT REDUX ADMIN STARTER
+# REACT REDUX WEB STARTER
 Build for support large application development,developer can  easily develop website, management system by this starter kit. This is not good starter kit who are looking for CMS(content management system). This Starter kit is good for who want to learn and develop with react redux from scratch.
 
 # Table of Contents
