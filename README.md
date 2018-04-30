@@ -42,8 +42,10 @@ Build for support large application development,developer can  easily develop we
 |------| initializeStore.js (Initilize the main store for redux)
 |------| rootReducer.js (Main reducer class for root)
 |------| withReducer.js (For Lazy loading the redux store)
-|----| reducers
-|----| router [Configure the router]
+|----| router[Control all the routes of app]
+|------| withAuthRoute.js
+|------| withoutAuthRoute.js
+|----| reducers[Configure the router]
 |------| [Global Reducer Folder for Redux]
 |------| [Global Reducer File(.js)]
 |----| routes
