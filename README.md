@@ -1,5 +1,5 @@
 # REACT REDUX ADMIN STARTER
-Build for newbie and student to help, how to develop administrator protal for every site. how easily developer can ``` Learn about react redux``` and Implemented it to their site. This is not good starter kit who are looking for CMS(content management system). This Starter kit is good for who want to learn react redux from scratch.
+Build for support large application development,developer can  easily develop website, management system by this starter kit. This is not good starter kit who are looking for CMS(content management system). This Starter kit is good for who want to learn and develop with react redux from scratch.
 
 # Table of Contents
 - [Project Structure](#project-structure)
@@ -72,19 +72,19 @@ Build for newbie and student to help, how to develop administrator protal for ev
 |--| postcss.config.js
 ```
 # Special Notes
-  This starter kit support, i have include the two most important production feature
+  This starter kit support two important feature for mordern javascript development
 
         1. Lazy loading for Redux Store
         2. Module wise Code Spliting
 
-For Lazy loading of Redux Store, I have create function  withReducer() which will split the reducer and loading the redux on demand at runtime of react application. we can split the code with following code below:
+For Lazy loading of Redux Store, I have introduced a function called  ```withReducer()``` which will load the redux on demand at runtime. for spliting the redux store we can just add the code below at every module at ```index.js```:
 
   ```javascript 
   export default withReducer('homeReducer'/** key for reducer to split **/, 
   homeReducer/** reducer name for module **/)
   (HomeContainer/** container or samrt component which create connection between redux and component)
   ```
-For Module wise Code Spliting, I have to use ```React Loadable``` package, so we can split the code with using folowing that code below
+For Module wise Code Spliting, I have introduced ```React Loadable``` package, which will split the code at production and runtime also
   
 ```javascript
 Loadable({
@@ -95,19 +95,20 @@ Loadable({
 ```
 # Installation and Configure
 
-   1. You can just clone the git repository [react-admin-starter-kit](https://github.com/tariqulislam/react-redux-admin-starter.git)
+   1. You can just ```clone``` the git repository [react-admin-starter-kit](https://github.com/tariqulislam/react-redux-admin-starter.git)
    2. Then run the command for:
 
-        1. For npm run
-            ```npm run install```
-        2. For Yarn run
-            ```yarn install```
+        1. For npm : ```npm run install```
+        2. For Yarn run : ```yarn install```
 
-   3. Application will run at [local server with port](http://localhost:3000)
+   3. Application will run at [local development server with port](http://localhost:3000)
 
 ## New Module Development
 
-This starter kit mainly developed for modularized the project and provide the developer friendly architecture. To create the new module to go to  -> ```routes``` folder.  create the folder with ```index.js``` file first.
+The main feature of this starter kit is modularization. Which will provide friendly architecture for developer. To create the new module:
+
+       1. to go to  -> ```routes``` folder.  
+       2. create other necessary folders with ```index.js``` file.
     
        Example:
         ```
@@ -123,7 +124,7 @@ This starter kit mainly developed for modularized the project and provide the de
             |----------| ContactReducer.js
             |--------| index.js
         ```
-## Design the Component with React.js component design:
+## Create the Component for design the page named ```Contact.js```:
 
 ### Example:
 
@@ -151,7 +152,7 @@ export default Contact
 export const GET_CONTACT_INFO = 'GET_CONTACT_INFO'
 export const SET_CONTACT_INFO = 'SET_CONTACT_INFO'
 ```        
-### create the initial state for redux store
+### Create the initial state for redux store
 
 ```javascript
 const initialState = {
@@ -159,7 +160,7 @@ const initialState = {
    contactDetails: null
 }
 ```
-### create the actions for handle the payload
+### Create the actions for handle the payload and reducer
 
 #### Example: 
 
@@ -179,7 +180,7 @@ export function setContactInfo (data) {
    }
 }
 ```
-### Create object which has defination for handling reducer
+### Create object structure which has defination for handling reducer
 
 #### Example:
 
@@ -193,7 +194,7 @@ const CONTACT_ACTION_HANDLER = {
   }
 }
 ```
-### Statement for handle the contact reducer
+### Conditional statement for handle the contact reducer
 
 #### Example:
 
@@ -204,9 +205,9 @@ export default function contactReducer (state = initialState, action) {
 }
 ```
 
-### Add the code to smart component ContactContainer.js for connect the redux to react component:
+### Add the code to smart component ```ContactContainer.js``` for connect the redux to react component:
 
-#### import main component and other library for redux and import the reducer to smart component
+#### import main component (Contact.js) and ```connect``` function which will create connection between React component and redux reducer, And then import the ```ContactReducer.js``` reducer to smart component ```ContactContainer.js```
 
 ```javascript
 import {connect}  from 'react-redux'
@@ -217,7 +218,7 @@ import {
 
 import Contact from '../component/Contact'
 ```
-#### create function which will dispatch the reducer 
+#### Create function which will dispatch the reducer 
 
 ```javascript
 const loadRenderContactInfo = (dispatch) => {
@@ -228,7 +229,7 @@ const loadRenderContactInfo = (dispatch) => {
       }))
 }
 ```
-#### create the `mapStateToProps()` default function for redux to mapping the state for reducer using in connect function
+#### Create the `mapStateToProps()` (default function for redux) which will maintain all the state for the ```Contact.js``` component.
 
 ```javascript
 const mapStateToProps = (state) => ({
@@ -236,14 +237,14 @@ const mapStateToProps = (state) => ({
   contactDetails: state.contactReducer.contactDetails
 })
 ````
-#### create the `mapActionCreators()` default function for redux to mapping the action for reducer using in connect function
+#### Create the `mapActionCreators()` (default function for redux) which will maintain all the functions from redux and those function are related to react component ```Contact.js```
 
 ```javascript
 const mapActionCreator = (dispatch) => ({
  renderContactInfo: loadRenderContactInfo(dispatch)
 })
 ```
-#### connect the redux with react component
+#### Connect the redux with react component ```Contact.js```
 
 ```javascript
 export default connect(
@@ -251,15 +252,15 @@ export default connect(
   mapActionCreator
 )(Contact)
 ```
-#### Apply the lazy loading to (Contact -> index.js) file for Redux store for contact module
+#### Apply lazy loading to (Contact -> index.js) file for Split Redux store for ```Contact``` module
 
 ```javascript
 import ContactContainer from './container/ContactContainer'
 import contactReducer from './reducer/ContactReducer'
-import {withReducer} from '../../core/withReducer'
+import {withReducer} from 'core/withReducer'
 export default withReducer('contactReducer', contactReducer)(ContactContainer)
 ```
-#### Add the code spliting functionality at runtime by appling ```react loadable``` to ```routeSplit.js``` file
+#### Add the code spliting functionality  for ```Contact``` module by appling ```react loadable``` to ( routes -> routeSplit.js) file 
 
 ```javascript
 const Contact = Loadable({
@@ -271,17 +272,22 @@ export { Home, About, Contact }
 ```
 
 
-#### To show the ```Contact``` component in menu we should add the mapping to (shared -> AppHelper.js -> getNavigationItem -> TopNav)
+#### To Add the ```Contact``` module at Menu Bar, we should add following below object at (shared -> AppHelper.js -> getNavigationItem -> TopNav)
 
 ```{id: "3", path: "/contact", label: "Contacts", withAuth: true}```
 
 
-#### Add the ```Contact``` to react router for route, we can add below code to (router -> WithAuthRoute.js)
+#### For the Routing purpose of ```Contact``` module at the following code below (router -> WithAuthRoute.js)
+There are two file include for handling the routing...
+   
+   1. WithAuthRoute.js : Using the Route after authentication and authorization
+   2. WithoutAuthRoute.js : Using Before authentication and authorization
+   
 
 ```<Route exact path="/contact" component={Contact} />```
 
 
-#### Change the contact page with this code 
+#### Change the ```Contact.js``` page with following below code 
 ```javascript
 import React from 'react'
 
@@ -299,15 +305,15 @@ export default Contact
 
 # Handle Ajax Request
 
-Handling Ajax is a important part of the for any api based application. we can use the ```axios``` package to handle
-the Ajax request with this starter kit. I have discuss the procedure below
+Handling Ajax is a important part of the for any api based application. I have introduced ```axios``` package to handle
+the Ajax request with this starter kit. which i have discuss below
 
-## Add the redux code for ```ContactReducer.js``` file:
+## Following code  gose to ```ContactReducer.js``` file:
 
 #### Import the axios package in sample:
 ```javascript
 import axios from 'axios'
-import RequestHeaderHelper from '../../../shared/RequestHeaderHelper'
+import RequestHeaderHelper from 'shared/RequestHeaderHelper'
 ```
 #### Add the Action constraint for handling the ajax request
 ```javascript
@@ -339,7 +345,7 @@ export const getPostInfoFromApi = (data) => {
     return {type: 'GET_POST_INFO', payload: request}
 }
 ```
-#### Add the reducer to control Redux store change
+#### Add the reducer control flow to handle redux store change
 ```javascript
 [GET_POST_INFO]: (state, action) => {
         return ({...state, posts: null })
@@ -357,7 +363,7 @@ const loadGetPostsInfo = (data,dispatch) => {
     })   
 }
 ```
-#### Add change state to ```mapStateToProps()``` function for ```posts``` data
+#### Add state ```posts``` to ```mapStateToProps()``` function passing the state from redux to react component
 ```javascript
  const mapStateToProps = (state) => ({
    contactTitle: state.contactReducer.contactTitle,
@@ -365,14 +371,14 @@ const loadGetPostsInfo = (data,dispatch) => {
    `posts: state.contactReducer.posts`
 })
 ```
-#### Add the function accessible to react component, we should add function to ```mapActionCreator()``` function
+#### For ```getPostsInfo``` function accessible to react component we can add that function to ```mapActionCreators()``` at  ```ContactContainer.js``` file
 ```javascript
 const mapActionCreator = (dispatch) => ({
    renderContactInfo: loadRenderContactInfo(dispatch),
    `getPostsInfo: (data) => loadGetPostsInfo(data,dispatch)`
 })
 ```
-#### Change the component with react component for get the ```componentDidMount``` and ```componentWillMount```
+#### Change the code of react component ```Contact.js``` for rendering the ```data``` consume from api
 ```javascript
 import React from 'react'
 import map from 'lodash/map'
